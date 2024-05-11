@@ -47,3 +47,4 @@ def test_disguise_number():
     assert disguise_number("Visa Platinum 1246377376343588") == "Visa Platinum 1246 37** **** 3588"
     assert disguise_number("Счет 14211924144426031657") == "Счет **1657"
     assert disguise_number("Maestro 3928549031574026") == "Maestro 3928 54** **** 4026"
+    assert disguise_number('') == ''

@@ -2,8 +2,6 @@ import datetime
 from json import loads
 from pathlib import Path
 
-from settings import OPERATIONS_DATA_PATH
-
 
 def read_file_data(path: Path) -> list[dict]:
     """
@@ -54,5 +52,7 @@ def disguise_number(number: str) -> str:
     """
     if number[:4] == 'Счет':
         return f'Счет **{number[-4:]}'
+    elif number == '':
+        return ''
     else:
         return f'{number[:-12]} {number[-12:-10]}** **** {number[-4:]}'
