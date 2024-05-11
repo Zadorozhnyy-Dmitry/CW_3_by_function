@@ -1,5 +1,5 @@
 from settings import TEST_OPERATIONS_PART
-from src.utils import read_file_data, executed_operations_only, translate_date_format
+from src.utils import read_file_data, executed_operations_only, translate_date_format, sort_operations_by_date
 
 
 def test_read_file_data():
@@ -22,3 +22,21 @@ def test_executed_operations_only():
 def test_translate_date_format():
     assert translate_date_format("2019-08-26T10:50:58.294041") == '26.08.2019'
     assert translate_date_format("2018-06-30T02:08:58.425572") == '30.06.2018'
+
+
+def test_sort_operations_by_date():
+    test_list = [
+        {'date': '2018-09-12T21:27:25.241689'},
+        {'date': '2019-07-03T18:35:29.512364'},
+        {'date': '2018-03-23T10:45:06.972075'},
+        {'date': '2018-06-30T02:08:58.425572'},
+        {'date': '2019-08-26T10:50:58.294041'},
+    ]
+    expected_list = [
+        {'date': '2019-08-26T10:50:58.294041'},
+        {'date': '2019-07-03T18:35:29.512364'},
+        {'date': '2018-09-12T21:27:25.241689'},
+        {'date': '2018-06-30T02:08:58.425572'},
+        {'date': '2018-03-23T10:45:06.972075'},
+    ]
+    assert sort_operations_by_date(test_list) == expected_list
