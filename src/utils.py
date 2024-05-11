@@ -56,3 +56,19 @@ def disguise_number(number: str) -> str:
         return ''
     else:
         return f'{number[:-12]} {number[-12:-10]}** **** {number[-4:]}'
+
+
+def output_data(op: dict) -> str:
+    """
+    Функция выводит данные по операции в нужном формате
+    :param op: словарь
+    :return: строка
+    """
+    operation_date = translate_date_format(op["date"])
+    operation_from = disguise_number(op.get("from", ""))
+    operation_to = disguise_number(op["to"])
+    return f'''
+{operation_date} {op["description"]}
+{operation_from} -> {operation_to}
+{op["operationAmount"]["amount"]} {op["operationAmount"]["currency"]["name"]}
+'''
