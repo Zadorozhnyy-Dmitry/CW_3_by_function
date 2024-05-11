@@ -2,6 +2,8 @@ import datetime
 from json import loads
 from pathlib import Path
 
+from settings import OPERATIONS_DATA_PATH
+
 
 def read_file_data(path: Path) -> list[dict]:
     """
@@ -33,3 +35,12 @@ def translate_date_format(date: str) -> str:
     """
     iso_date = datetime.datetime.fromisoformat(date)
     return iso_date.strftime('%d.%m.%Y')
+
+
+def sort_operations_by_date(list_operations: list[dict]) -> list[dict]:
+    """
+    Функция сортирует список операций по дате начиная с последней
+    :param list_operations: список словарей с операциями
+    :return: отсортированный список словарей с операциями
+    """
+    return sorted(list_operations, key=lambda date: date['date'], reverse=True)
