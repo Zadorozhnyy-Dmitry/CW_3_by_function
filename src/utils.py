@@ -44,3 +44,15 @@ def sort_operations_by_date(list_operations: list[dict]) -> list[dict]:
     :return: отсортированный список словарей с операциями
     """
     return sorted(list_operations, key=lambda date: date['date'], reverse=True)
+
+
+def disguise_number(number: str) -> str:
+    """
+    Функция скрытия номеров счета или карты
+    :param number: строка с номером
+    :return: скрытая строка
+    """
+    if number[:4] == 'Счет':
+        return f'Счет **{number[-4:]}'
+    else:
+        return f'{number[:-12]} {number[-12:-10]}** **** {number[-4:]}'
