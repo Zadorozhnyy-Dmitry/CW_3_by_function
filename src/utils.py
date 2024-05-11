@@ -1,3 +1,4 @@
+import datetime
 from json import loads
 from pathlib import Path
 
@@ -22,3 +23,13 @@ def executed_operations_only(list_operations: list[dict]) -> list[dict]:
     return [
         op for op in list_operations if op.get('state') == "EXECUTED"
     ]
+
+
+def translate_date_format(date: str) -> str:
+    """
+    Преобразование времени из ISO формата в необходимый
+    :param date: строка в ISO формате
+    :return: строка
+    """
+    iso_date = datetime.datetime.fromisoformat(date)
+    return iso_date.strftime('%d.%m.%Y')
