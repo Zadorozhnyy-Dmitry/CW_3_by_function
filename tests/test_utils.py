@@ -1,5 +1,6 @@
 from settings import TEST_OPERATIONS_PART
-from src.utils import read_file_data, executed_operations_only, translate_date_format, sort_operations_by_date
+from src.utils import read_file_data, executed_operations_only, translate_date_format, sort_operations_by_date, \
+    disguise_number
 
 
 def test_read_file_data():
@@ -40,3 +41,9 @@ def test_sort_operations_by_date():
         {'date': '2018-03-23T10:45:06.972075'},
     ]
     assert sort_operations_by_date(test_list) == expected_list
+
+
+def test_disguise_number():
+    assert disguise_number("Visa Platinum 1246377376343588") == "Visa Platinum 1246 37** **** 3588"
+    assert disguise_number("Счет 14211924144426031657") == "Счет **1657"
+    assert disguise_number("Maestro 3928549031574026") == "Maestro 3928 54** **** 4026"
