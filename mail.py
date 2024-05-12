@@ -4,6 +4,10 @@ from src.utils import read_file_data, executed_operations_only, sort_operations_
 
 
 def main():
+    """
+    Виджет, который показывает несколько последних успешных банковских операций клиента
+    :return: None
+    """
     # создаю список словарей с операциями
     list_operations: list[dict] = read_file_data(OPERATIONS_DATA_PATH)
     # создаю список словарей с успешными операциями
